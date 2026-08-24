@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>Animacion en HTML</title>
+        <style>
+            canvas {
+                display: flex;
+                margin: 0 auto;
+                border: 5px solid #064c85;
+                margin-top: 150px;
+                background-color: #dbfbff;
+            }
+            p {
+                text-align: center;
+                font-size: 24px;
+                color: #064c85;
+            }
+            body {
+                background-color: #334e97;
+            }
+        </style>
+
+  </head>
+<body>
+
+    <canvas id="micanvas" width="1000" height="1000"></canvas>
+
+<script>
+    var x1 = 0;
+    var dx1 = .5;
+
+    var x2 = 0;
+    var dx2 = .5;
+
+    var x3 = 0;
+    var dx3 = .5;
+
+    var y4 = 750;
+    var dy4 = .5;
+
+    var x5 = 750;
+    var dx5 = .5;
+
+    var y6 = 750;
+    var dy6 = .5;
+
+    var x7 = 750;
+    var dx7 = .5;
+
+    var x8 = 0;
+    var dx8 = .5;
+
+    var x9 = 0;
+    var dx9 = .5;
+
+    var y10 = 0;
+    var dy10 = .5;
+
+    var x11 = 500;
+    var dx11 = .5;
+
+    var x12 = 500;
+    var dx12 = .5;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        var canvas = document.getElementById("micanvas");
+        var context = canvas.getContext("2d");
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        context.fillStyle="green";
+        context.fillRect(250,250,500,500);  
+        
+        context.fillStyle = "red";
+        context.fillRect(x1, 450, 500, 100);
+
+        context.fillStyle = "red";
+        context.fillRect(450, x2, 100, 500);
+
+        context.fillStyle = "blue";
+        context.fillRect(x3, 150, 250, 100);
+
+        context.fillStyle = "blue";
+        context.fillRect(150, y4, 100, 250);
+
+        context.fillStyle = "blue";
+        context.fillRect(x5, 150, 250, 100);
+
+        context.fillStyle = "blue";
+        context.fillRect(750, y6, 100, 250);
+
+        context.fillStyle = "blue";
+        context.fillRect(x7, 750, 250, 100);
+
+        context.fillStyle = "blue";
+        context.fillRect(150, x8, 100, 250);
+
+        context.fillStyle = "blue";
+        context.fillRect(x9, 750, 250, 100);
+
+        context.fillStyle = "blue";
+        context.fillRect(750, y10, 100, 250);
+
+        context.fillStyle = "red";
+        context.fillRect(x11, 450, 500, 100);
+
+        context.fillStyle = "green";
+        context.fillRect(450, x12, 100, 500);
+        
+
+        // First rectangle movement
+        if (x1 > 500 || x1 < 0) {
+            dx1 = -dx1;
+        }
+        x1 += dx1;
+
+        // Second rectangle movement
+        if (x2 > 500 || x2 < 0) {
+            dx2 = -dx2;
+        }
+        x2 += dx2;
+
+        // Third rectangle movement
+        if (x3 > 200 || x3 < 0) {
+            dx3 = -dx3;
+        }
+        x3 += dx3;
+
+        // Fourth rectangle movement
+        if (y4 > 750 || y4 < 550) {
+            dy4 = -dy4;
+        }
+        y4 += dy4;
+
+        // Fifth rectangle movement
+        if (x5 > 750 || x5 < 550) {
+            dx5 = -dx5;
+        }
+        x5 += dx5;
+
+        // Sixth rectangle movement
+        if (y6 > 750 || y6 < 550) {
+            dy6 = -dy6;
+        }
+        y6 += dy6;
+
+        // Seventh rectangle movement
+        if (x7 > 750 || x7 < 550) {
+            dx7 = -dx7;
+        }
+        x7 += dx7;
+
+        // Eighth rectangle movement
+        if (x8 > 200 || x8 < 0) {
+            dx8 = -dx8;
+        }
+        x8 += dx8;
+
+        // Ninth rectangle movement
+        if (x9 > 200 || x9 < 0) {
+            dx9 = -dx9;
+        }
+        x9 += dx9;
+
+        // Tenth rectangle movement
+        if (y10 > 200 || y10 < 0) {
+            dy10 = -dy10;
+        }
+        y10 += dy10;
+
+         if (x11 > 500 || x11 < 0) {
+            dx11 = -dx11;
+        }
+        x11 += dx11;
+
+        // Second rectangle movement
+        if (x12 > 500 || x12 < 0) {
+            dx12 = -dx12;
+        }
+        x12 += dx12;
+        
+        context.fillStyle="red";
+        context.fillRect(350,350,300,300);   
+
+    }
+
+    animate();
+</script>
+</body>
+</html>
