@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Logo DVD</title>
+   <style>
+    body{
+        text-align: center;
+        background-color: rgb(204, 249, 255);
+    }
+    canvas{
+        border: 2px solid #5e5e5e;
+        background-color: rgb(255, 255, 255);
+        margin-top: 50px;
+    }
+    </style>
+    <script>
+        var x=Math.random() * 650;
+        var y=200;
+        var dx=.5;
+        var dy=.5;
+        var imagen= new Image();
+        imagen.src = "DVDLogo.png"; 
+
+        function animate(){    
+            requestAnimationFrame(animate);
+            var canvas = document.getElementById("micanvas");
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, innerWidth, innerHeight);
+            context.drawImage(imagen, x, y, 150, 150); 
+            if (x > 650 || x < 0){
+                dx= -dx;
+            }
+           x+=dx;
+           if (y > 450 || y < 0){
+                dy= -dy;
+            }
+           y+=dy;
+        }
+        animate();
+    </script>
+</head>
+<body>
+    <canvas id="micanvas" width="800" height="600"></canvas>
+</body>
+</html>
