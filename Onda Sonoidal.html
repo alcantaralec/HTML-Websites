@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pulse Pelota</title>
+    <link rel="stylesheet" href="style.css">
+  </head>  
+  <style>
+    body {
+      background-color: #081564;
+    }
+    canvas {
+    background-image: url("Space.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    margin: 0 auto;
+
+    width: 70%;
+    height: auto;
+    }
+    
+  </style>
+  <body>
+    <canvas id="canvas" width="1920" height="1080"></canvas>
+    <script src="utils.js"></script>
+    <script src="pelota.js"></script>
+    <script>
+    window.onload = function () {
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        ball = new Pelota(),
+        angle = 0,
+        centerScale = 1,
+        range = 0.5,
+        speed = .01,
+        xSpeed = 3,
+        ySpeed = 1,
+        yRange = 400;
+
+    ball.x = 0;
+    ball.y = canvas.height / 2;
+
+    (function drawFrame () {
+      window.requestAnimationFrame(drawFrame);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Move horizontally
+      ball.x += xSpeed;
+
+      // Move up and down
+      ball.y = canvas.height / 2 + Math.sin(angle) * yRange;
+
+      angle += speed;
+
+      ball.draw(context);
+
+      // Return to the left when it reaches the right
+      if (ball.x > canvas.width) {
+        ball.x = 0;
+      }
+
+    }());
+  };
+    </script>
+  </body>
+</html>
