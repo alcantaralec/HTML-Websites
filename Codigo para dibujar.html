@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <style>
+    body {
+      text-align: center;
+      background-color: rgb(204, 249, 255);
+    }
+    canvas {
+      border: 5px solid black;
+      background-color: rgb(0, 14, 103) !important;
+    }
+  </style>
+
+  <body>
+    <canvas id="canvas" width="1000" height="800"></canvas>
+    <script>
+    window.onload = function () {
+      //Our code here...
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d');
+          
+         /*--dibujo de casita sencilla con triangulo y rectangulo--*/
+          context.save();
+          context.lineWidth = 5;
+          context.strokeStyle = 'brown';
+          context.fillStyle='sandybrown';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+          context.moveTo(300,700);
+          context.lineTo(370,650);
+          context.lineTo(440,700);
+          context.lineTo(300,700);
+          context.fill();
+          context.stroke();
+          context.fillRect(320, 700, 100, 100);
+          context.strokeRect(320, 700, 100, 100);
+          context.restore();
+
+          /* --dibujo estrella--*/
+          context.save();
+          context.lineWidth = 5;
+          context.strokeStyle = 'gold';
+          context.fillStyle = 'yellow';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+
+          let centerX = 775;
+          let centerY = 215;
+          let outerRadius = 65;
+          let innerRadius = 28;
+
+          for (let i = 0; i < 10; i++) {
+              let radius = (i % 2 === 0) ? outerRadius : innerRadius;
+              let angle = -Math.PI / 2 + (i * Math.PI / 5);
+
+              let x = centerX + Math.cos(angle) * radius;
+              let y = centerY + Math.sin(angle) * radius;
+
+              if (i === 0) {
+                  context.moveTo(x, y);
+              } else {
+                  context.lineTo(x, y);
+              }
+          }
+
+          context.closePath();
+
+          context.fill();
+          context.stroke();
+
+          context.restore();
+
+          /* -- dibujo de luna -- */
+          context.save();
+          context.lineWidth = 5;
+          context.strokeStyle = 'gold';
+          context.fillStyle = 'yellow';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+
+          context.arc(200, 200, 150, 0, Math.PI * 2);
+          context.fill();
+          context.stroke();
+
+          // parte amarilla luna
+          context.fillStyle = 'rgb(0, 14, 103)';
+          context.strokeStyle = 'rgb(0, 14, 103)';
+
+          context.beginPath();
+          context.arc(290, 170, 150, 0, Math.PI * 2);
+          context.fill();
+          context.stroke();
+
+          context.restore();
+
+          /*-- dibujo de honguito --*/
+          context.save();
+          context.lineWidth = 5;
+          context.strokeStyle = 'brown';
+          context.fillStyle='red';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+
+          context.fill();
+          context.stroke();
+
+          // parte roja hongo
+          context.beginPath();
+          context.arc(700, 750, 50, Math.PI, 0);
+          context.lineTo(750, 750);
+          context.lineTo(730, 750);
+          context.closePath();
+          context.fillStyle = 'red';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.fill();
+          context.stroke();
+
+          // tronco hongo
+          context.fillStyle = 'beige';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+          context.moveTo(705, 750);
+          context.lineTo(695, 750);
+          context.lineTo(685, 800);
+          context.lineTo(715, 800);
+          context.closePath();
+
+          context.fill();
+          context.stroke();
+
+          // manchitas
+          context.fillStyle = 'white';
+
+          context.beginPath();
+          context.arc(710, 710, 4, 0, Math.PI * 2);
+          context.fill();
+
+          context.beginPath();
+          context.arc(680, 730, 12, 0, Math.PI * 2);
+          context.fill();
+
+          context.beginPath();
+          context.arc(730, 740, 6, 0, Math.PI * 2);
+          context.fill();
+
+          context.restore();
+
+          context.save();
+
+          /*-- dibujo de estrella diamante --*/
+          context.save();
+          context.lineWidth = 5;
+          context.strokeStyle = 'gold';
+          context.fillStyle='yellow';
+          context.lineJoin = "round";
+          context.lineCap = "round";
+
+          context.beginPath();
+          context.moveTo(400,150);
+          context.lineTo(450,125);
+          context.lineTo(475,50);
+          context.lineTo(500,125);
+          context.lineTo(550,150);
+          context.lineTo(500,175);
+          context.lineTo(475,250);
+          context.lineTo(450,175);
+          context.lineTo(400,150);
+          context.fill();
+          context.stroke();
+          context.restore();
+          
+      };
+    </script>
+  </body>
+</html>
