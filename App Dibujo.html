@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Paint App</title>
+    <style>
+      body{ 
+        text-align: center;
+        margin-top: 20px;
+        background-color:rgb(155, 245, 255);
+      }
+      header{
+        font: 50px impact;
+        color: rgb(27, 66, 0);
+      }
+      canvas {
+        background-color: white;
+      }
+      .colores{
+        width: 100%;
+        height: 50px;
+        text-align: center;
+      }
+      .colores button{
+        width: 100px;
+        height: 40px;
+        margin-right: 5px;
+        margin-top: 5px;
+        color: white;
+        font: 25px impact;
+        cursor: pointer;
+        border-radius: 15px;
+      }
+      .colores button:hover{
+        opacity: 0.5;
+      }
+
+      #black{
+        background: black;
+      }
+      #red{
+        background: red;
+      }
+      #orange{
+        background: orange;
+      }
+      #yellow{
+        background: yellow;
+      }
+      #green{
+        background: green;
+      }
+      #blue{
+        background: blue;
+      }
+      #purple{
+        background: purple;
+      }
+      #pink{
+        background: pink;
+      }
+
+       #otros button{
+        width: 300px;
+        height: 50px;
+        background: #303030;
+        color: white;
+        font: 25px impact;
+        cursor: pointer;
+        margin-bottom: 5px;
+        border-radius: 15px;
+      }
+      #otros button:hover{
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Paint App</h1>
+    </header>
+    <div class="colores">
+       <button id="black" type="button" value="#000000"></button>
+       <button id="red" type="button" value="#ff0000"></button>
+       <button id="orange" type="button" value="#ffa500"></button>
+       <button id="yellow" type="button" value="#ffff00"></button>
+       <button id="green" type="button" value="#008000"></button>
+       <button id="blue" type="button" value="#0000ff"></button>
+       <button id="purple" type="button" value="#800080"></button>
+       <button id="pink" type="button" value="#ffc0cb"></button>
+    </div>
+    <div id="otros">
+        <button id="clear" type="button">Erase Canvas</button>
+        <button id="Size 1" type="button">Size 1</button>
+        <button id="Size 2" type="button">Size 2</button>
+        <button id="Size 3" type="button">Size 3</button>
+    </div>
+    <canvas id="canvas" width="1000" height="700"></canvas>
+    
+    <script src="utils.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          mouse = utils.captureMouse(canvas);
+
+      canvas.addEventListener('mousedown', function () {
+        context.beginPath();
+        context.moveTo(mouse.x, mouse.y);
+        canvas.addEventListener('mousemove', onMouseMove, false);
+      }, false);
+
+      canvas.addEventListener('mouseup', function () {
+        canvas.removeEventListener('mousemove', onMouseMove, false);
+      }, false);
+
+      function onMouseMove () {
+        context.lineTo(mouse.x, mouse.y);
+        context.stroke();
+      }
+
+      // Cambiar color de trazo
+      var colores = document.getElementsByClassName('colores')[0];
+
+      colores.addEventListener('click', function(event) {
+           context.strokeStyle = event.target.value;
+           });
+
+      // Borrar todo
+       var clearButton = document.getElementById('clear');
+       clearButton.addEventListener('click', function() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            });     
+
+        var sizeButton1 = document.getElementById('Size 1');
+
+        sizeButton1.addEventListener('click', function() {
+            context.lineWidth = 5;
+        });   
+
+       var sizeButton2 = document.getElementById('Size 2');
+       sizeButton2.addEventListener('click', function() {
+            context.lineWidth = 15;
+            });    
+
+       var sizeButton3 = document.getElementById('Size 3');
+       sizeButton3.addEventListener('click', function() {
+            context.lineWidth = 30;
+            });    
+    };
+    </script>
+  </body>
+</html>
