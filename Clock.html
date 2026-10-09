@@ -4,29 +4,71 @@
     <meta charset="utf-8">
     <title>Rotational Velocity</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+        text-align: center;
+        background-color: rgb(204, 249, 255);
+        }
+        canvas { 
+            background-image: url("Clock No Hands.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: rgb(204, 249, 255);
+        }
+    </style>
   </head>
   <body>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <canvas id="canvas" width="600" height="600"></canvas>
 
     <script src="utils.js"></script>
     <script src="./classes/arrow.js"></script>
     <script>
     window.onload = function () {
-      var canvas = document.getElementById('canvas'),
-          context = canvas.getContext('2d'),
-          mouse = utils.captureMouse(canvas),
-          arrow = new Arrow(),
-          vr = 2; //degrees
+      var canvas = document.getElementById('canvas');
+          context = canvas.getContext('2d');
+          //arrow = new Arrow(),
+          var hora = new Image();
+          hora.src = "horas.png";
 
-      arrow.x = canvas.width / 2;
-      arrow.y = canvas.height / 2;
+          var minutos = new Image();
+          minutos.src = "Minutos.png";
+
+          var segundos = new Image();
+          segundos.src = "Seconds Hand.png";
+
+          var vrHora = 0.05;
+          var vrMinutos = 0.5;
+          var vrSegundos = 0.9;
+
+          var radHora = 0;
+          var radMinutos = 0;
+          var radSegundos = 0;
 
       (function drawFrame () {
         window.requestAnimationFrame(drawFrame, canvas);
-        context.clearRect(0, 0, canvas.width, canvas.height);
 
-        arrow.rotation += vr  * Math.PI / 180; //to radians
-        arrow.draw(context);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        context.save();
+        context.translate(302, 298);
+        radHora += vrHora * Math.PI / 180;
+        context.rotate(radHora);
+        context.drawImage(hora, -200, -200, 400, 400);
+        context.restore();
+
+        context.save();
+        context.translate(302, 298);
+        radMinutos += vrMinutos * Math.PI / 180;
+        context.rotate(radMinutos);
+        context.drawImage(minutos, -300, -300, 600, 600);
+        context.restore();
+
+        context.save();
+        context.translate(302, 298);
+        radSegundos += vrSegundos * Math.PI / 180;
+        context.rotate(radSegundos);
+        context.drawImage(segundos, -275, -275, 550, 550);
+        context.restore();
       }());
     };
     </script>
